@@ -1,0 +1,21 @@
+version: '3.5'
+services:
+  apache:
+    image: "tsle/ws-apache-php74-mariadb103-amd64:2.2a"
+    ports:
+      - "80:80"
+    volumes:
+      - "$PWD/mpweb:/var/www/html"
+      #- "$PWD/mpcron/root:/var/spool/cron/crontabs/root"
+      #- "$PWD/mpcron/wwwphpfpm:/var/spool/cron/crontabs/wwwphpfpm"
+    environment:
+      - CF_PROJ_PRIMARY_FQDN=example-host.localhost
+      #- CF_WWWFPM_USER_ID=<YOUR_UID>
+      #- CF_WWWFPM_GROUP_ID=<YOUR_GID>
+      - CF_SET_OWNER_AND_PERMS_WEBROOT=true
+      - CF_ENABLE_CRON=false
+      #- CF_LANG=de_DE.UTF-8
+      #- CF_TIMEZONE=Europe/Berlin
+    restart: unless-stopped
+    stdin_open: false
+    tty: false
