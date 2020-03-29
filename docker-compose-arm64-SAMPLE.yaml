@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   apache:
-    image: "tsle/ws-apache-php74-mariadb103-arm64:2.3b"
+    image: "tsle/ws-apache-php74-mariadb103-arm64:2.4a"
     ports:
       - "80:80"
     volumes:
@@ -12,6 +12,21 @@ services:
       - CF_PROJ_PRIMARY_FQDN=example-host.localhost
       #- CF_WWWFPM_USER_ID=<YOUR_UID>
       #- CF_WWWFPM_GROUP_ID=<YOUR_GID>
+      #
+      #- CF_PHPFPM_RUN_AS_WWWDATA=false
+      #- CF_PHPFPM_ENABLE_OPEN_BASEDIR=true
+      #- CF_PHPFPM_UPLOAD_TMP_DIR=<PATH>
+      #- CF_PHPFPM_PM_MAX_CHILDREN=5
+      #- CF_PHPFPM_PM_START_SERVERS=2
+      #- CF_PHPFPM_PM_MIN_SPARE_SERVERS=1
+      #- CF_PHPFPM_PM_MAX_SPARE_SERVERS=3
+      #- CF_PHPFPM_UPLOAD_MAX_FILESIZE=100M
+      #- CF_PHPFPM_POST_MAX_SIZE=100M
+      #- CF_PHPFPM_MEMORY_LIMIT=512M
+      #- CF_PHPFPM_MAX_EXECUTION_TIME=600
+      #- CF_PHPFPM_MAX_INPUT_TIME=600
+      #- CF_PHPFPM_HTML_ERRORS=true
+      #
       - CF_SET_OWNER_AND_PERMS_WEBROOT=true
       - CF_ENABLE_CRON=false
       #- CF_LANG=de_DE.UTF-8
