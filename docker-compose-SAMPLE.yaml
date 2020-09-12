@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   apache:
-    image: "tsle/ws-apache-php74-mariadb103-amd64:2.4a"
+    image: "tsle/ws-apache-php74-mariadb103-<CPU_ARCH>:2.6a"
     ports:
       - "80:80"
     volumes:

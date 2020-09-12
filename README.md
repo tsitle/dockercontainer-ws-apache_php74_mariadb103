@@ -7,9 +7,9 @@ The Docker Image **ws-apache-php74-mariadb103-\<ARCH\>** will automaticly be dow
 The source for the image can be found here [https://github.com/tsitle/dockerimage-ws-apache\_php74_mariadb103](https://github.com/tsitle/dockerimage-ws-apache_php74_mariadb103).
 
 ## Docker Container usage
-- copy the file `docker-compose-<ARCH>-SAMPLE.yaml` to `docker-compose.yaml`
-- edit the file as needed
-- run `$ ./dc-ws-apache.sh up`
+To start the Docker Container simply run `$ ./dc-ws-apache.sh up`.  
+When the file `docker-compose.yaml` doesn't exist it will be created for you.  
+You can edit the file afterwards if you wish to customize it.
 
 To stop the container run `$ ./dc-ws-apache.sh down`
 

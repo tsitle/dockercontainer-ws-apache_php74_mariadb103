@@ -121,21 +121,22 @@ shift
 function _createDockComp() {
 	local TMP_UID="$(id -u)"
 	local TMP_GID="$(id -g)"
-	cp "docker-compose-${LVAR_DEBIAN_DIST}-SAMPLE.yaml" "$VAR_DCY_INP" || return 1
-	if [ $TMP_UID -gt 499 ]; then
-		sed \
-				-i.bck \
-				-e "s/#- CF_WWWFPM_USER_ID=<YOUR_UID>/- CF_WWWFPM_USER_ID=$TMP_UID/g" \
-				"$VAR_DCY_INP" || return 1
-		rm "${VAR_DCY_INP}.bck" || return 1
-	fi
-	if [ $TMP_GID -gt 100 ]; then
-		sed \
-				-i.bck \
-				-e "s/#- CF_WWWFPM_GROUP_ID=<YOUR_GID>/- CF_WWWFPM_GROUP_ID=$TMP_GID/g" \
-				"$VAR_DCY_INP" || return 1
-		rm "${VAR_DCY_INP}.bck" || return 1
-	fi
+	cp "docker-compose-SAMPLE.yaml" "$VAR_DCY_INP" || return 1
+	#
+	sed \
+			-i.bck \
+			-e "s/<CPU_ARCH>/$LVAR_DEBIAN_DIST/g" \
+			"$VAR_DCY_INP" || return 1
+	rm "${VAR_DCY_INP}.bck" || return 1
+	#
+	[ $TMP_UID -lt 500 ] && TMP_UID=1000
+	[ $TMP_GID -lt 101 ] && TMP_GID=1000
+	sed \
+			-i.bck \
+			-e "s/<YOUR_UID>/$TMP_UID/g" \
+			-e "s/<YOUR_GID>/$TMP_GID/g" \
+			"$VAR_DCY_INP" || return 1
+	rm "${VAR_DCY_INP}.bck" || return 1
 	return 0
 }
 
@@ -143,7 +144,7 @@ VAR_DCY_INP="docker-compose.yaml"
 
 VAR_PROJNAME="apaphp74mdb103example"
 
-[ ! -f "$VAR_DCY_INP" -a -f "docker-compose-${LVAR_DEBIAN_DIST}-SAMPLE.yaml" ] && {
+[ ! -f "$VAR_DCY_INP" -a -f "docker-compose-SAMPLE.yaml" ] && {
 	_createDockComp || exit 1
 }
 
