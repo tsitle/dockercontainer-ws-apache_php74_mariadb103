@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   apache:
-    image: "tsle/ws-apache-php74-mariadb103-<CPU_ARCH>:2.6a"
+    image: "tsle/ws-apache-php74-mariadb103-<CPU_ARCH>:2.7a"
     ports:
       - "80:80"
     volumes:
@@ -10,6 +10,9 @@ services:
       #- "$PWD/mpcron/wwwphpfpm:/var/spool/cron/crontabs/wwwphpfpm"
     environment:
       - CF_PROJ_PRIMARY_FQDN=example-host.localhost
+      #
+      #- CF_APACHE_TIMEOUT=300
+      #
       #- CF_WWWFPM_USER_ID=<YOUR_UID>
       #- CF_WWWFPM_GROUP_ID=<YOUR_GID>
       #

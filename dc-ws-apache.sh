@@ -121,18 +121,15 @@ shift
 function _createDockComp() {
 	local TMP_UID="$(id -u)"
 	local TMP_GID="$(id -g)"
+
+	[ $TMP_UID -lt 500 ] && TMP_UID=1000
+	[ $TMP_GID -lt 101 ] && TMP_GID=1000
+	#
 	cp "docker-compose-SAMPLE.yaml" "$VAR_DCY_INP" || return 1
 	#
 	sed \
 			-i.bck \
 			-e "s/<CPU_ARCH>/$LVAR_DEBIAN_DIST/g" \
-			"$VAR_DCY_INP" || return 1
-	rm "${VAR_DCY_INP}.bck" || return 1
-	#
-	[ $TMP_UID -lt 500 ] && TMP_UID=1000
-	[ $TMP_GID -lt 101 ] && TMP_GID=1000
-	sed \
-			-i.bck \
 			-e "s/<YOUR_UID>/$TMP_UID/g" \
 			-e "s/<YOUR_GID>/$TMP_GID/g" \
 			"$VAR_DCY_INP" || return 1

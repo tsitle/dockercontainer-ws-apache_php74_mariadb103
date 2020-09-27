@@ -3,10 +3,12 @@
 For hosting PHP powered websites.
 
 ## Required Docker Image
+
 The Docker Image **ws-apache-php74-mariadb103-\<ARCH\>** will automaticly be downloaded from the Docker Hub.  
 The source for the image can be found here [https://github.com/tsitle/dockerimage-ws-apache\_php74_mariadb103](https://github.com/tsitle/dockerimage-ws-apache_php74_mariadb103).
 
 ## Docker Container usage
+
 To start the Docker Container simply run `$ ./dc-ws-apache.sh up`.  
 When the file `docker-compose.yaml` doesn't exist it will be created for you.  
 You can edit the file afterwards if you wish to customize it.
@@ -33,6 +35,7 @@ To stop the container run `$ ./dc-ws-apache.sh down`
 - CF\_CSR\_SUBJECT\_LOCATION [string]: For auto-generated SSL Certificates (default: LE)
 - CF\_CSR\_SUBJECT\_ORGANIZ [string]: For auto-generated SSL Certificates (default: The IT Company)
 - CF\_CSR\_SUBJECT\_ORGUNIT [string]: For auto-generated SSL Certificates (default: IT)
+- CF\_APACHE\_TIMEOUT [int]: Number of seconds before receives and sends time out (default: 300)
 - CF\_WWWFPM\_USER\_ID [int]: User-ID for wwwphpfpm (default: 1000)
 - CF\_WWWFPM\_GROUP\_ID [int]: Group-ID for wwwphpfpm (default: 1000)
 - CF\_PHPFPM\_RUN\_AS\_WWWDATA [bool]: Run PHP-FPM process as user/group www-data ? (default: false)
@@ -55,6 +58,7 @@ Only on X64:
 - CF\_XDEBUG\_REMOTE\_HOST [string]: Remote Host for XDebug (default 'dockerhost')
 
 ## Using cron
+
 If you'd like to use cron you'll also need to copy the file `mpcron/crontab-template` to
 `mpcron/<USERNAME>`.  
 E.g. for installing a crontab for the user "www-data" copy the file to `mpcron/www-data`.  
